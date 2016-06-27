@@ -119,7 +119,7 @@ var EtsyRouter = Backbone.Router.extend ({
 		searchCollection.fetch({
 			data: {
 				api_key: searchCollection._key,
-				keywords: searchKeyword
+				keywords: "searchKeyword+"
 			}
 
 		})

@@ -5,8 +5,14 @@ input[type="text"]:focus {
     width: 30%;
 }
 
+a {
+
+	color: inherit;
+	text-decoration: none;
+}
+
 #container {
-	display: flex;
+	display: inline-block;
 
 }
 
@@ -19,10 +25,10 @@ input[type="text"]:focus {
 }
 
 .listingContainer {
-	flex: 1;
-	flex-flow: row wrap;
+	display: inline-block;
 	font-size: 15px;
 	border: 2px solid tomato;
+	width: 33%;
 	margin: 2%;
 	padding: 3%;
 
