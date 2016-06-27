@@ -37,9 +37,9 @@ var ListingModel = Backbone.Collection.extend({
 var ListingsView = Backbone.View.extend ({
 	el: qSelect("#container"),
 
-	events: {
-		"click .title" : "_handleClick"
-	},
+	// events: {
+		// "click .title" : "_handleClick"
+	// },
 
 	initialize: function(coll) { //>>>this function is run when a new instance is created and a model is passed through the constructor***Important!
 
@@ -63,11 +63,10 @@ var ListingsView = Backbone.View.extend ({
 		var htmlString = ""
 		for(var i = 0; i < listingArray.length; i++){
 			var listingMod = listingArray[i]
-
-			
+			console.log(listingMod)
 			htmlString += '<div data-id = "' + listingMod.get("listing_id") + '"class = "listingContainer">'
-			htmlString += '<div>' + listingMod.get('title') + '</div>'
 			htmlString += '<a href = "#details/' + listingMod.get("listing_id") + '">'
+			htmlString += '<div>' + listingMod.get('title') + '</div>'
 			htmlString += '<img src = "' + listingMod.get("Images")[0].url_170x135 + '"/>' //>>>>Why do my images break unexpectedly?
 			htmlString += '<p class = "price">' + '$' + listingMod.get("price") + '</p>'
 			htmlString += '</div>'
@@ -117,12 +116,15 @@ var EtsyRouter = Backbone.Router.extend ({
 	doListingsSearch: function(searchKeyword) {
 		var searchCollection = new ListingsCollection()
 		searchCollection.fetch({
+			dataType:"jsonp",
 			data: {
+				includes: "Images, Shop",
 				api_key: searchCollection._key,
-				keywords: "searchKeyword+"
+				keywords: searchKeyword
 			}
 
 		})
+		console.log(searchKeyword)
 		new ListingsView(searchCollection)
 	},
 
